@@ -1,6 +1,6 @@
 import React from 'react'
-import Veggie from "../componants/Veggie";
-import Popular from "../componants/Popular";
+import Veggie from "../components/Veggie";
+import Popular from "../components/Popular";
 
 export default function Home() {
   return (

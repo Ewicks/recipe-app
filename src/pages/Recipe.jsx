@@ -32,10 +32,22 @@ export default function Recipe() {
           <Button className={activeTab === 'intructions' ? 'active' : ''} onClick={() => setActiveTab('intructions')}>Instructions</Button>
           <Button className={activeTab === 'ingredients' ? 'active' : ''} onClick={() => setActiveTab('ingredients')}>Ingrediants</Button>
         </DisplayFlex>
-       
+
+      {/* {activeTab === "instructions" && ( */}
         <div>
-          <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
-        </div>
+         <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
+         <h3 dangerouslySetInnerHTML={{ __html: details.intructions }}></h3>
+       </div>
+      {/* )} */}
+
+      {/* {activeTab === "ingredients" && (
+         <ul>
+         {details.extendedIngrediants.map((ingredient) => {
+           <li key={ingredient.id}>{ingredient.original}</li>
+         })}
+        </ul>
+      )} */}
+
       </Info>
     </DetailWrapper>
   )
@@ -48,6 +60,8 @@ const DetailWrapper = styled.div`
   display: flex;
   justify-content: center;
   aligh-items: center;
+  margin-left: 10rem;
+  margin-right: 10rem;
 
   .active {
     background: linear-gradient(35deg, #494949, #313131);

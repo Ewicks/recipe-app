@@ -8,7 +8,7 @@ export default function Recipe() {
 
     let params = useParams()
     const [details, setDetails] = useState({})
-    const [activeTab, setActiveTab] = useState('intructions')
+    const [activeTab, setActiveTab] = useState('instructions')
 
     const fetchDetails = async () => {
         const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information/?apiKey=${process.env.REACT_APP_API_KEY}`)
@@ -29,24 +29,25 @@ export default function Recipe() {
       </div>
       <Info>
         <DisplayFlex>
-          <Button className={activeTab === 'intructions' ? 'active' : ''} onClick={() => setActiveTab('intructions')}>Instructions</Button>
+          <Button className={activeTab === 'instructions' ? 'active' : ''} onClick={() => setActiveTab('instructions')}>Instructions</Button>
           <Button className={activeTab === 'ingredients' ? 'active' : ''} onClick={() => setActiveTab('ingredients')}>Ingrediants</Button>
         </DisplayFlex>
 
-      {/* {activeTab === "instructions" && ( */}
+      {activeTab === "instructions" && (
         <div>
          <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
-         <h3 dangerouslySetInnerHTML={{ __html: details.intructions }}></h3>
+         <h3 dangerouslySetInnerHTML={{ __html: details.instructions }}></h3>
        </div>
-      {/* )} */}
+      )}
 
-      {/* {activeTab === "ingredients" && (
+      {activeTab === "ingredients" && (
          <ul>
-         {details.extendedIngrediants.map((ingredient) => {
-           <li key={ingredient.id}>{ingredient.original}</li>
-         })}
-        </ul>
-      )} */}
+            {details.extendedIngredients &&
+              details.extendedIngredients.map((ingredient) => (
+                <li key={ingredient.id}> {ingredient.original}</li>
+              ))}
+          </ul>
+      )}
 
       </Info>
     </DetailWrapper>
